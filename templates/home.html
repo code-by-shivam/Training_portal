@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Data</title>
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <a href="{% url 'courses' %}">Course</a>
+    <a href="{% url 'trainers' %}">Trainer</a>
+     <a href="{% url 'students' %}">Students</a>
+
+    <p>Welcome to the training data page.</p>
+
+   
+    <h2>All Courses</h2>
+    <div class="section-grid">
+        {% for course in Courses %}
+        <div class="card">
+            <img src="{{ course.course_image.url }}" alt="{{ course.course_name }}">
+            <h3>{{ course.course_name }}</h3>
+            <h4>{{ course.description }}</h4>
+            <p>Duration: {{ course.duration }} Weeks</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    
+    <h2>All Trainers</h2>
+    <div class="section-grid">
+        {% for trainer in Trainers %}
+        <div class="card">
+            <img src="{{ trainer.trainer_picture.url }}" alt="{{ trainer.full_Name }}">
+            <h3>Name: {{ trainer.full_Name }}</h3>
+            <h4>Expertise: {{ trainer.expertise }}</h4>
+            <p>Email: {{ trainer.email }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+  
+    <h2>All Students</h2>
+    <div class="section-grid">
+        {% for student in Students %}
+        <div class="card">
+            <h3>Name: {{ student.full_name }}</h3>
+            <h4>Email: {{ student.email }}</h4>
+            <h4>Active: {{ student.is_active }}</h4>
+            <h4>Course: {{ student.enrolled_courses }}</h4>
+            <h4>Trainer: {{ student.trainer }}</h4>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

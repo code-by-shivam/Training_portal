@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students</title>
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+</head>
+<body>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'courses' %}">Course</a>
+    <a href="{% url 'trainers' %}">Trainer</a>
+   
+    <h1>Students</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Active</th>
+                <th>Enrolled Courses</th>
+                <th>Trainer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in Students %}
+            <tr>
+                <td>{{ student.full_name }}</td>
+                <td>{{ student.email }}</td>
+                <td>{{ student.is_active }}</td>
+                <td>{{ student.enrolled_courses }}</td>
+                <td>{{ student.trainer }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>
