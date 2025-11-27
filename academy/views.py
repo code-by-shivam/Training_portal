@@ -17,3 +17,5 @@ def Students(request):
     context = {'Students': student}
     return render(request, 'students.html', context)
 
+
+    
