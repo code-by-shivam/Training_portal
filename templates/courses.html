@@ -97,7 +97,7 @@
                 <td><img src="{{ course.course_image.url }}" alt="{{ course.course_name }}" style="width:100px; height:auto;"></td>
                  <td>
                     <div>
-                        <a href="#"><i class="fa fa-eye"></i></a>
+                        <a href="{% url 'course_detail' course.id %}"><i class="fa fa-eye"></i></a>
                     </div>
                 </td>
                 <td>
