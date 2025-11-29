@@ -75,6 +75,11 @@
         </nav>
 
     <h1>Courses Offered</h1>
+    <div class="d-flex justify-content-end mb-3">
+    <a href="{% url 'course_add' %}" class="btn btn-primary">
+        <i class="fa fa-plus"></i> Add Course
+    </a>
+</div>
 
     <table>
         <thead>
@@ -102,12 +107,12 @@
                 </td>
                 <td>
                     <div>
-                        <a href=#><i class="fa fa-edit"></i></a>
+                        <a href="{% url 'edit_course' course.id %}" ><i class="fa fa-edit"></i></a>
                     </div>
                 </td>
                 <td>
                     <div>
-                        <a href="#"><i class="fa fa-trash"></i></a>
+                        <a href="{% url 'delete_course' course.id %}"><i class="fa fa-trash"></i></a>
                     </div>
                 </td>            
             </tr>

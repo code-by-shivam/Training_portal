@@ -75,6 +75,12 @@
         </nav>
 
     <h1>Students</h1>
+    <div class="d-flex justify-content-end mb-3">
+    <a href="{% url 'student_add' %}" class="btn btn-primary">
+        <i class="fa fa-plus"></i> Add Student
+    </a>
+</div>
+
     <table>
         <thead>
             <tr>
@@ -98,17 +104,17 @@
                 <td>{{ student.trainer }}</td>
                                  <td>
                     <div>
-                        <a href="#"><i class="fa fa-eye"></i></a>
+                        <a href="{% url 'student_detail' student.id %}"><i class="fa fa-eye"></i></a>
                     </div>
                 </td>
                 <td>
                     <div>
-                        <a href=#><i class="fa fa-edit"></i></a>
+                        <a href="{% url 'student_edit' student.id %}"><i class="fa fa-edit"></i></a>
                     </div>
                 </td>
                 <td>
                     <div>
-                        <a href="#"><i class="fa fa-trash"></i></a>
+                        <a href="{% url 'student_delete' student.id %}"><i class="fa fa-trash"></i></a>
                     </div>
             </tr>
             {% endfor %}

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Detail</title>
+    <title>Trainer Detail</title>
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
             rel="stylesheet">
@@ -70,46 +70,50 @@
 
             </div>
         </nav>
-        <!-- SIMPLE HEADER (NO CUSTOM CSS) -->
-    <div class="bg-primary text-white py-4 px-4">
-        <h2 class="m-0">{{ course.course_name }} – Details</h2>
+    
+    <!-- HEADER BAR SIMILAR TO YOUR TABLE -->
+    <div class="bg-primary bg-gradient text-white py-4 px-4 mb-4">
+        <h2 class="m-0">Trainer Details</h2>
     </div>
 
-    <!-- MAIN CONTENT -->
-    <div class="container my-5">
+    <div class="container">
 
         <div class="card shadow p-4">
 
+            <!-- Name -->
             <div class="mb-3">
-                <h5 class="fw-bold">Course Name</h5>
-                <p class="text-muted">{{ course.course_name }}</p>
+                <h5 class="fw-bold">Name</h5>
+                <p class="text-muted">{{ trainer.full_Name }}</p>
             </div>
 
+            <!-- Email -->
             <div class="mb-3">
-                <h5 class="fw-bold">Duration</h5>
-                <p class="text-muted">{{ course.duration }} weeks</p>
+                <h5 class="fw-bold">Email</h5>
+                <p class="text-muted">{{ trainer.email }}</p>
             </div>
 
+            <!-- Expertise -->
             <div class="mb-3">
-                <h5 class="fw-bold">Description</h5>
-                <p class="text-muted">{{ course.description }}</p>
+                <h5 class="fw-bold">Expertise</h5>
+                <p class="text-muted">{{ trainer.expertise }}</p>
             </div>
 
-            <div class="mb-4">
-                <h5 class="fw-bold">Course Image</h5>
+            <!-- Profile Image -->
+            <div class="mb-3">
+                <h5 class="fw-bold">Profile Picture</h5>
 
-                {% if course.course_image %}
-                <img src="{{ course.course_image.url }}" class="img-fluid rounded border" style="max-width:250px;">
-                {% else %}
-                <p class="text-muted">No image available</p>
-                {% endif %}
+                
+                <img src="{{ trainer.trainer_picture.url }}" 
+                     class="img-thumbnail rounded" 
+                     style="max-width:200px;">
+               
             </div>
 
-            <a href="{% url 'courses' %}" class="btn btn-primary">← Back to Courses</a>
+            <a href="{% url 'trainers' %}" class="btn btn-primary mt-3">← Back to Trainers</a>
 
         </div>
-
     </div>
+
     
 </body>
 </html>

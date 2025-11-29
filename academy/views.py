@@ -1,5 +1,7 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,redirect
 from .models import Course, Trainer, Student
+from .forms import CourseForm, TrainerForm,StudentForm
+from django.contrib.auth.decorators import login_required,permission_required
 # Create your views here.
 
 def Courses(request):
@@ -23,4 +25,120 @@ def course_detail(request,id):
         'course':course
     }
     return render(request,'course_detail.html',context)
+
+def course_edit(request,id):
+    course = get_object_or_404(Course,id=id)
+    form = CourseForm(request.POST or None, instance=course)
+    if form.is_valid():
+        form.save()
+        return redirect('courses')
+    else:
+        print(form.errors)
+    context = {
+        'form' : form,
+        'course' : course
+    }
+    return render(request,"edit_course.html",context)
+
+
+def course_delete(request,id):
+    course = get_object_or_404(Course,id=id)
+    course.delete()
+    return redirect('courses')
+
+def trainer_detail(request,id):
+    trainer = get_object_or_404(Trainer,id=id)
+    context = {
+        'trainer':trainer
+    }
+    return render(request,'trainer_detail.html',context)
+
+def trainer_edit(request,id):
+    trainer = get_object_or_404(Trainer,id=id)
+    form = TrainerForm(request.POST or None, instance=trainer)
+    if form.is_valid():
+        form.save()
+        return redirect('trainers')
+    else:
+        print(form.errors)
+    context = {
+        'form' : form,
+        'trainer' : trainer
+    }
+    return render(request,"edit_trainer.html",context)
+
+def trainer_delete(request,id):
+    trainer = get_object_or_404(Trainer,id=id)
+    trainer.delete()
+    return redirect('trainers')  
+
+def student_detail(request,id):
+    student = get_object_or_404(Student,id=id)
+    context = {
+        'student':student
+    }
+    return render(request,'student_detail.html',context)
+
+def student_edit(request,id):
+    student = get_object_or_404(Student,id=id)
+    form = StudentForm(request.POST or None, instance=student)
+    if form.is_valid():
+        form.save()
+        return redirect('students')
+    else:
+        print(form.errors)
+    context = {
+        'form' : form,
+        'student' : student
+    }
+    return render(request,"edit_student.html",context)
+
+def student_delete(request,id):
+    student = get_object_or_404(Student,id=id)
+    student.delete()
+    return redirect('students') 
+
+
+def student_add(request):
+    if request.method == "POST":
+        form = StudentForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('students') 
+        else:
+            print(forms.errors)
+    form = StudentForm()
+    context = {
+        'form':form
+    }
+    return render(request,"add_student.html",context)
     
+
+def trainer_add(request):
+    if request.method == "POST":
+        form = TrainerForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('trainers') 
+        else:
+            print(forms.errors)
+    form = TrainerForm()
+    context = {
+        'form':form
+    }
+    return render(request,"add_trainer.html",context)
+
+
+def course_add(request):
+    if request.method == "POST":
+        form = CourseForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('courses') 
+        else:
+            print(forms.errors)
+    form = CourseForm()
+    context = {
+        'form':form
+    }
+    return render(request,"add_course.html",context)
