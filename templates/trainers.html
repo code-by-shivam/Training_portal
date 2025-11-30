@@ -75,11 +75,9 @@
             </div>
         </nav>
         <h1>Trainers</h1>
-        <div class="d-flex justify-content-end mb-3">
-    <a href="{% url 'trainer_add' %}" class="btn btn-primary">
-        <i class="fa fa-plus"></i> Add Trainer
-    </a>
-</div>
+        {% if perms.academy.add_student %}
+        <a href="{% url 'student_add' %}">Add Student</a>
+        {% endif %}
         <table>
             <thead>
                 <tr>
@@ -103,17 +101,20 @@
                             style="width:100px; height:auto;"></td>
                     <td>
                         <div>
-                            <a href="{% url 'trainer_detail' trainer.id %}"><i class="fa fa-eye"></i></a>
+                            <a href="{% url 'trainer_detail' trainer.id %}"><i
+                                    class="fa fa-eye"></i></a>
                         </div>
                     </td>
                     <td>
                         <div>
-                            <a href="{% url 'trainer_edit' trainer.id %}"><i class="fa fa-edit"></i></a>
+                            <a href="{% url 'trainer_edit' trainer.id %}"><i
+                                    class="fa fa-edit"></i></a>
                         </div>
                     </td>
                     <td>
                         <div>
-                            <a href="{%  url 'trainer_delete' trainer.id %}"><i class="fa fa-trash"></i></a>
+                            <a href="{%  url 'trainer_delete' trainer.id %}"><i
+                                    class="fa fa-trash"></i></a>
                         </div>
 
                     </tr>

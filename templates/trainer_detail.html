@@ -2,18 +2,18 @@
 {% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trainer Detail</title>
-    <link
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Trainer Detail</title>
+        <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
             rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
-     
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
 
                 <a class="navbar-brand" href="/">Navbar</a>
@@ -70,50 +70,50 @@
 
             </div>
         </nav>
-    
-    <!-- HEADER BAR SIMILAR TO YOUR TABLE -->
-    <div class="bg-primary bg-gradient text-white py-4 px-4 mb-4">
-        <h2 class="m-0">Trainer Details</h2>
-    </div>
 
-    <div class="container">
-
-        <div class="card shadow p-4">
-
-            <!-- Name -->
-            <div class="mb-3">
-                <h5 class="fw-bold">Name</h5>
-                <p class="text-muted">{{ trainer.full_Name }}</p>
-            </div>
-
-            <!-- Email -->
-            <div class="mb-3">
-                <h5 class="fw-bold">Email</h5>
-                <p class="text-muted">{{ trainer.email }}</p>
-            </div>
-
-            <!-- Expertise -->
-            <div class="mb-3">
-                <h5 class="fw-bold">Expertise</h5>
-                <p class="text-muted">{{ trainer.expertise }}</p>
-            </div>
-
-            <!-- Profile Image -->
-            <div class="mb-3">
-                <h5 class="fw-bold">Profile Picture</h5>
-
-                
-                <img src="{{ trainer.trainer_picture.url }}" 
-                     class="img-thumbnail rounded" 
-                     style="max-width:200px;">
-               
-            </div>
-
-            <a href="{% url 'trainers' %}" class="btn btn-primary mt-3">← Back to Trainers</a>
-
+        <!-- HEADER BAR SIMILAR TO YOUR TABLE -->
+        <div class="bg-primary bg-gradient text-white py-4 px-4 mb-4">
+            <h2 class="m-0">Trainer Details</h2>
         </div>
-    </div>
 
-    
-</body>
+        <div class="container">
+
+            <div class="card shadow p-4">
+
+                <!-- Name -->
+                <div class="mb-3">
+                    <h5 class="fw-bold">Name</h5>
+                    <p class="text-muted">{{ trainer.full_Name }}</p>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <h5 class="fw-bold">Email</h5>
+                    <p class="text-muted">{{ trainer.email }}</p>
+                </div>
+
+                <!-- Expertise -->
+                <div class="mb-3">
+                    <h5 class="fw-bold">Expertise</h5>
+                    <p class="text-muted">{{ trainer.expertise }}</p>
+                </div>
+
+                <!-- Profile Image -->
+                <div class="mb-3">
+                    <h5 class="fw-bold">Profile Picture</h5>
+
+                    <img src="{{ trainer.trainer_picture.url }}"
+                        class="img-thumbnail rounded"
+                        style="max-width:200px;">
+
+                </div>
+                {% if perms.academy.view_trainer %}
+
+                <a href="{% url 'trainers' %}" class="btn btn-primary mt-3">←
+                    Back to Trainers</a>
+                {% endif %}
+            </div>
+        </div>
+
+    </body>
 </html>
